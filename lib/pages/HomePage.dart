@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:unfollowapp/widgets/Loading.dart';
+import 'package:unfollowapp/services/getUserData.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     dynamic _loginData = ModalRoute.of(context)!.settings.arguments as Map;
     return FutureBuilder(
-        future: _getUserData(_loginData["username"], _loginData["pw"]),
+        future: getUserData(_loginData["username"], _loginData["pw"]),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             dynamic _userData = snapshot.data;
@@ -86,15 +87,4 @@ class _HomeState extends State<Home> {
           }
         });
   }
-}
-
-Future _getUserData(String username, String pw) async {
-  final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/getUserData/"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8'
-      },
-      body: jsonEncode(<String, String>{'username': username, 'pw': pw}));
-
-  return jsonDecode(response.body);
 }

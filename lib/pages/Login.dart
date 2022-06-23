@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("NotFollowers Instagram")),
+        appBar: AppBar(title: Text("Quickly App")),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
