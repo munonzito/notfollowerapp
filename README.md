@@ -1,2 +1,2 @@
 # NotFollowers App for Instagram
-See who is not folowing you back.
+See who is not following you back.
